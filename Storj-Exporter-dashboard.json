@@ -65,7 +65,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1570657410225,
+  "iteration": 1570656445480,
   "links": [
     {
       "icon": "external link",
@@ -229,7 +229,7 @@
                 "value": 1000
               }
             ],
-            "unit": "Bps"
+            "unit": "decbytes"
           },
           "override": {},
           "values": false
@@ -2070,7 +2070,7 @@
       }
     }
   ],
-  "refresh": "5m",
+  "refresh": "1m",
   "schemaVersion": 19,
   "style": "dark",
   "tags": [
@@ -2106,7 +2106,7 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -2126,5 +2126,5 @@
   "timezone": "",
   "title": "Storj-Exporter",
   "uid": "teLFQE2Wk",
-  "version": 24
+  "version": 22
 }
