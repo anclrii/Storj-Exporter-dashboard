@@ -65,7 +65,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1570566661754,
+  "iteration": 1570657410225,
   "links": [
     {
       "icon": "external link",
@@ -229,7 +229,7 @@
                 "value": 1000
               }
             ],
-            "unit": "decgbytes"
+            "unit": "Bps"
           },
           "override": {},
           "values": false
@@ -640,7 +640,7 @@
         "#d44a3a"
       ],
       "decimals": 1,
-      "format": "decgbytes",
+      "format": "decbytes",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -859,7 +859,7 @@
           "refId": "D"
         },
         {
-          "expr": "sum(delta(storj_total_diskspace{type=\"used\"}[5m])) by(instance) * 8000 / 300",
+          "expr": "sum(delta(storj_total_diskspace{type=\"used\"}[5m])) by(instance) * 8 / 300",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -889,7 +889,7 @@
       "yaxes": [
         {
           "decimals": 2,
-          "format": "decgbytes",
+          "format": "decbytes",
           "label": "Storage IO rate",
           "logBase": 1,
           "max": null,
@@ -898,7 +898,7 @@
         },
         {
           "decimals": 2,
-          "format": "Mbits",
+          "format": "bps",
           "label": "Storage sum",
           "logBase": 1,
           "max": null,
@@ -1423,7 +1423,7 @@
       ],
       "decimals": 1,
       "description": "",
-      "format": "gbytes",
+      "format": "decbytes",
       "gauge": {
         "maxValue": 100,
         "minValue": 0,
@@ -2008,7 +2008,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "delta(storj_total_diskspace{type=\"used\",instance=~\"$node.*\"}[5m]) * 8000 / 300",
+          "expr": "delta(storj_total_diskspace{type=\"used\",instance=~\"$node.*\"}[5m]) * 8 / 300",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -2047,7 +2047,7 @@
       "yaxes": [
         {
           "decimals": 2,
-          "format": "decgbytes",
+          "format": "decbytes",
           "label": "Storage IO rate",
           "logBase": 1,
           "max": null,
@@ -2056,7 +2056,7 @@
         },
         {
           "decimals": 2,
-          "format": "Mbits",
+          "format": "bps",
           "label": "Storage sum",
           "logBase": 1,
           "max": null,
@@ -2070,7 +2070,7 @@
       }
     }
   ],
-  "refresh": "1m",
+  "refresh": "5m",
   "schemaVersion": 19,
   "style": "dark",
   "tags": [
@@ -2106,7 +2106,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {
@@ -2126,5 +2126,5 @@
   "timezone": "",
   "title": "Storj-Exporter",
   "uid": "teLFQE2Wk",
-  "version": 19
+  "version": 24
 }
