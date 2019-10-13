@@ -65,7 +65,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1570656445480,
+  "iteration": 1570977136378,
   "links": [
     {
       "icon": "external link",
@@ -335,7 +335,7 @@
             "decimals": 2,
             "mappings": [],
             "max": 100,
-            "min": 97,
+            "min": 99,
             "thresholds": [
               {
                 "color": "semi-dark-red",
@@ -343,11 +343,11 @@
               },
               {
                 "color": "#EAB839",
-                "value": 98
+                "value": 99.5
               },
               {
                 "color": "green",
-                "value": 99.5
+                "value": 99.8
               }
             ],
             "title": "",
@@ -361,27 +361,18 @@
       "pluginVersion": "6.3.3",
       "targets": [
         {
-          "expr": "sum(storj_sat_audit{type=\"totalCount\"}) by(instance) - sum(storj_sat_audit{type=\"successCount\"}) by(instance)",
-          "format": "time_series",
-          "hide": true,
-          "instant": false,
-          "intervalFactor": 2,
-          "legendFormat": "{{instance}}",
-          "refId": "B"
-        },
-        {
-          "expr": "avg(storj_sat_uptime{type=\"alpha\"}) by(instance)",
+          "expr": "avg(storj_sat_uptime{type=\"score\"}) by(instance) * 100",
           "format": "time_series",
           "hide": false,
           "instant": false,
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Uptime avg",
+      "title": "Uptime avg score (* 100)",
       "type": "bargauge"
     },
     {
@@ -736,25 +727,25 @@
             "lastNotNull"
           ],
           "defaults": {
-            "decimals": 0,
+            "decimals": 2,
             "mappings": [],
-            "max": 50,
-            "min": 1,
+            "max": 100,
+            "min": 99,
             "thresholds": [
               {
-                "color": "semi-dark-green",
+                "color": "dark-red",
                 "value": null
               },
               {
                 "color": "light-yellow",
-                "value": 10
+                "value": 99.5
               },
               {
-                "color": "#E24D42",
-                "value": 40
+                "color": "dark-green",
+                "value": 99.8
               }
             ],
-            "unit": "short"
+            "unit": "percent"
           },
           "override": {},
           "values": false
@@ -764,27 +755,18 @@
       "pluginVersion": "6.3.3",
       "targets": [
         {
-          "expr": "sum(storj_sat_audit{type=\"totalCount\"}) by(instance) - sum(storj_sat_audit{type=\"successCount\"}) by(instance)",
+          "expr": "avg(storj_sat_uptime{type=\"score\"}) by(instance) * 100",
           "format": "time_series",
           "hide": false,
           "instant": false,
-          "intervalFactor": 2,
-          "legendFormat": "{{instance}}",
-          "refId": "B"
-        },
-        {
-          "expr": "sum(storj_sat_uptime{type=\"alpha\"}) by(instance)",
-          "format": "time_series",
-          "hide": true,
-          "instant": false,
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Audits failed total",
+      "title": "Audit avg score (* 100)",
       "type": "bargauge"
     },
     {
@@ -1233,7 +1215,7 @@
         }
       ],
       "yaxis": {
-        "align": false,
+        "align": true,
         "alignLevel": null
       }
     },
@@ -1522,10 +1504,10 @@
             "lastNotNull"
           ],
           "defaults": {
-            "decimals": 1,
+            "decimals": 2,
             "mappings": [],
             "max": 100,
-            "min": 90,
+            "min": 99,
             "thresholds": [
               {
                 "color": "dark-red",
@@ -1533,11 +1515,11 @@
               },
               {
                 "color": "yellow",
-                "value": 95
+                "value": 99.5
               },
               {
                 "color": "light-green",
-                "value": 98
+                "value": 99.8
               }
             ],
             "unit": "percent"
@@ -1552,7 +1534,7 @@
       "repeatDirection": "v",
       "targets": [
         {
-          "expr": "storj_sat_uptime{instance=~\"$node.*\",type=\"alpha\"}",
+          "expr": "storj_sat_uptime{instance=~\"$node.*\",type=\"score\"} * 100",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -1563,7 +1545,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "$node Uptime %",
+      "title": "$node Uptime score (* 100)",
       "type": "bargauge"
     },
     {
@@ -1584,23 +1566,25 @@
             "lastNotNull"
           ],
           "defaults": {
+            "decimals": 2,
             "mappings": [],
-            "max": 10,
-            "min": 1,
+            "max": 100,
+            "min": 99,
             "thresholds": [
               {
-                "color": "green",
+                "color": "dark-red",
                 "value": null
               },
               {
                 "color": "#EAB839",
-                "value": 3
+                "value": 99.5
               },
               {
-                "color": "dark-red",
-                "value": 5
+                "color": "semi-dark-green",
+                "value": 99.8
               }
-            ]
+            ],
+            "unit": "percent"
           },
           "override": {},
           "values": false
@@ -1612,27 +1596,18 @@
       "repeatDirection": "v",
       "targets": [
         {
-          "expr": "sum (storj_sat_audit{type=\"totalCount\",instance=~\"$node.*\"}) by (satellite) - sum(storj_sat_audit{type=\"successCount\",instance=~\"$node.*\"}) by (satellite)",
+          "expr": "storj_sat_audit{type=\"score\",instance=~\"$node.*\"} * 100",
           "format": "time_series",
           "hide": false,
           "instant": false,
           "intervalFactor": 1,
           "legendFormat": "{{satellite}}",
           "refId": "A"
-        },
-        {
-          "expr": "",
-          "format": "time_series",
-          "hide": false,
-          "instant": false,
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "C"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "$node Failed audits",
+      "title": "$node Audit score (* 100)",
       "type": "bargauge"
     },
     {
@@ -2106,7 +2081,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -2126,5 +2101,5 @@
   "timezone": "",
   "title": "Storj-Exporter",
   "uid": "teLFQE2Wk",
-  "version": 22
+  "version": 34
 }
