@@ -755,7 +755,7 @@
       "pluginVersion": "6.3.3",
       "targets": [
         {
-          "expr": "avg(storj_sat_uptime{type=\"score\"}) by(instance) * 100",
+          "expr": "avg(storj_sat_audit{type=\"score\"}) by(instance) * 100",
           "format": "time_series",
           "hide": false,
           "instant": false,
