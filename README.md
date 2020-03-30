@@ -7,6 +7,9 @@ Storj-exporter Grafana dashboard to visualise [Storj-Exporter](https://github.co
 ## details dashboard
 ![details dashboard](https://github.com/anclrii/Storj-Exporter-Dashboard/raw/master/details%20dashboard.png)
 
+## Reveue Detailed
+![Revenue Detailed dashboard](https://github.com/anclrii/Storj-Exporter-Dashboard/raw/master/Screenshot_storj_-_Revenue_Detail.png)
+
 ## Support
 Feel free to raise issues if you find any (currently needs more work) and also raise PR if you'd like to contribute.
 
