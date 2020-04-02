@@ -210,7 +210,7 @@
       "pluginVersion": "6.6.2",
       "targets": [
         {
-          "expr": "(sum(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}) / 1000^4 * 20) + (sum(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"})  / 1000^4 * 10) +  (sum(storj_sat_summary{type=\"storageSummary\" ,instance=~\"$node\",satellite=~\"$satellite\"}) / (24 * 30 ) * (1.5 ) / 1000^4)",
+          "expr": "(sum(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}) / 2^40 * 20) + (sum(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"})  / 2^40 * 10) +  (sum(storj_sat_summary{type=\"storageSummary\" ,instance=~\"$node\",satellite=~\"$satellite\"}) / (24 * 30 ) * (1.5 ) / 2^40)",
           "legendFormat": "",
           "refId": "A"
         }
@@ -264,7 +264,7 @@
       "pluginVersion": "6.6.2",
       "targets": [
         {
-          "expr": "(sum(storj_sat_day_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}) / 1000^4 * 20) + (sum(storj_sat_day_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"})  / 1000^4 * 10) +  (sum(storj_sat_summary{type=\"storageSummary\" ,instance=~\"$node\",satellite=~\"$satellite\"}) / (24 * 30 ) * (1.5/30 ) / 1000^4)",
+          "expr": "(sum(storj_sat_day_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}) / 2^40 * 20) + (sum(storj_sat_day_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"})  / 2^40 * 10) +  (sum(storj_sat_summary{type=\"storageSummary\" ,instance=~\"$node\",satellite=~\"$satellite\"}) / (24 * 30 ) * (1.5/30 ) / 2^40)",
           "legendFormat": "",
           "refId": "A"
         }
@@ -398,7 +398,7 @@
       "pluginVersion": "6.6.2",
       "targets": [
         {
-          "expr": "(sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}[1h])) / 1000^4 * 20) *24*30 + (sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"}[1h]))  / 1000^4 * 10) *24*30 + (sum(storj_sat_summary{type=\"storageSummary\",satellite=~\"$satellite\",instance=~\"$node\"})  / (30*24) * 1.5  / 1000^4)",
+          "expr": "(sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}[1h])) / 2^40 * 20) *24*30 + (sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"}[1h]))  / 2^40 * 10) *24*30 + (sum(storj_sat_summary{type=\"storageSummary\",satellite=~\"$satellite\",instance=~\"$node\"})  / (30*24) * 1.5  / 2^40)",
           "legendFormat": "",
           "refId": "A"
         }
@@ -467,7 +467,7 @@
       "pluginVersion": "6.6.2",
       "targets": [
         {
-          "expr": "(sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\",satellite!~\"saltlake.tardigrade.io:7777|satellite.stefan-benten.de:7777|118UWpMCHzs6CvSgWd9BfFVjw5K9pZbJjkfZJexMtSkmKxvvAW|1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE\",}[1h])) / 1000^4 * 20) *24*30 + (sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\",satellite!~\"saltlake.tardigrade.io:7777|satellite.stefan-benten.de:7777|118UWpMCHzs6CvSgWd9BfFVjw5K9pZbJjkfZJexMtSkmKxvvAW|1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE\",}[1h]))  / 1000^4 * 10) *24*30 + (sum(storj_sat_summary{type=\"storageSummary\",satellite=~\"$satellite\",instance=~\"$node\",satellite!~\"saltlake.tardigrade.io:7777|satellite.stefan-benten.de:7777|118UWpMCHzs6CvSgWd9BfFVjw5K9pZbJjkfZJexMtSkmKxvvAW|1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE\",})  / (30*24) * 1.5  / 1000^4)",
+          "expr": "(sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\",satellite!~\"saltlake.tardigrade.io:7777|satellite.stefan-benten.de:7777|118UWpMCHzs6CvSgWd9BfFVjw5K9pZbJjkfZJexMtSkmKxvvAW|1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE\",}[1h])) / 2^40 * 20) *24*30 + (sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\",satellite!~\"saltlake.tardigrade.io:7777|satellite.stefan-benten.de:7777|118UWpMCHzs6CvSgWd9BfFVjw5K9pZbJjkfZJexMtSkmKxvvAW|1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE\",}[1h]))  / 2^40 * 10) *24*30 + (sum(storj_sat_summary{type=\"storageSummary\",satellite=~\"$satellite\",instance=~\"$node\",satellite!~\"saltlake.tardigrade.io:7777|satellite.stefan-benten.de:7777|118UWpMCHzs6CvSgWd9BfFVjw5K9pZbJjkfZJexMtSkmKxvvAW|1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE\",})  / (30*24) * 1.5  / 2^40)",
           "legendFormat": "",
           "refId": "A"
         }
@@ -616,7 +616,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}) by(instance) / 1000^4 * 20)  + (sum(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"}) by(instance) / 1000^4 * 10) + (sum(storj_sat_summary{type=\"storageSummary\",instance=~\"$node\",satellite=~\"$satellite\"}) by(instance) / (30 * 24) * 1.5  / 1000^4)",
+          "expr": "(sum(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}) by(instance) / 2^40 * 20)  + (sum(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"}) by(instance) / 2^40 * 10) + (sum(storj_sat_summary{type=\"storageSummary\",instance=~\"$node\",satellite=~\"$satellite\"}) by(instance) / (30 * 24) * 1.5  / 2^40)",
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
@@ -703,7 +703,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(storj_sat_day_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}) by(instance) / 1000^4 * 20) + (sum(storj_sat_day_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"}) by(instance) / 1000^4 * 10) +  (sum(storj_sat_summary{type=\"storageSummary\" ,instance=~\"$node\",satellite=~\"$satellite\"}) by(instance) / (24 * 30 ) * (1.5/30 ) / 1000^4)",
+          "expr": "(sum(storj_sat_day_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}) by(instance) / 2^40 * 20) + (sum(storj_sat_day_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"}) by(instance) / 2^40 * 10) +  (sum(storj_sat_summary{type=\"storageSummary\" ,instance=~\"$node\",satellite=~\"$satellite\"}) by(instance) / (24 * 30 ) * (1.5/30 ) / 2^40)",
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
@@ -889,7 +889,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}[1h])) by(instance) / 1000^4 * 20) *24*30 + (sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"}[1h])) by(instance) / 1000^4 * 10) *24*30 + (sum(storj_sat_summary{type=\"storageSummary\",satellite=~\"$satellite\",instance=~\"$node\"}) by(instance) / (30*24) * 1.5  / 1000^4)",
+          "expr": "(sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}[1h])) by(instance) / 2^40 * 20) *24*30 + (sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"}[1h])) by(instance) / 2^40 * 10) *24*30 + (sum(storj_sat_summary{type=\"storageSummary\",satellite=~\"$satellite\",instance=~\"$node\"}) by(instance) / (30*24) * 1.5  / 2^40)",
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
@@ -978,7 +978,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}[1h])) by(satellite) / 1000^4 * 20) *24*30 + (sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"}[1h])) by(satellite) / 1000^4 * 10) *24*30 + (sum(storj_sat_summary{type=\"storageSummary\",satellite=~\"$satellite\",instance=~\"$node\"}) by(satellite) / (30*24) * 1.5  / 1000^4)",
+          "expr": "(sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"usage\"}[1h])) by(satellite) / 2^40 * 20) *24*30 + (sum(increase(storj_sat_month_egress{satellite=~\"$satellite\",instance=~\"$node\",type=\"repair\"}[1h])) by(satellite) / 2^40 * 10) *24*30 + (sum(storj_sat_summary{type=\"storageSummary\",satellite=~\"$satellite\",instance=~\"$node\"}) by(satellite) / (30*24) * 1.5  / 2^40)",
           "legendFormat": "{{satellite}}",
           "refId": "A"
         }
@@ -1497,7 +1497,7 @@
               "refId": "F"
             },
             {
-              "expr": "(sum(storj_sat_summary{type=\"storageSummary\",instance=~\"$node.*\",satellite=~\"$satellite\"}) by(instance) / (30 * 24) * 1.5  / 1000^4) + (sum(storj_sat_month_egress) by(instance) / 1000^4 * 20)",
+              "expr": "(sum(storj_sat_summary{type=\"storageSummary\",instance=~\"$node.*\",satellite=~\"$satellite\"}) by(instance) / (30 * 24) * 1.5  / 2^40) + (sum(storj_sat_month_egress) by(instance) / 2^40 * 20)",
               "legendFormat": "{{instance}} | Earnings",
               "refId": "H"
             },
