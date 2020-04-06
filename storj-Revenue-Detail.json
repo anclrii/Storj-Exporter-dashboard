@@ -524,12 +524,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max by (instance) (rate(storj_sat_day_egress{satellite=~\"$satellite\",instance=~ \"$node\"}[5m]))*-1",
+          "expr": "sum by (instance) (rate(storj_sat_day_egress{satellite=~\"$satellite\",instance=~ \"$node\"}[5m]))*-1",
           "legendFormat": "Sent:{{instance}}",
           "refId": "A"
         },
         {
-          "expr": "max by (instance) (rate(storj_sat_day_ingress{satellite=~\"$satellite\",instance=~ \"$node\"}[5m]))",
+          "expr": "sum by (instance) (rate(storj_sat_day_ingress{satellite=~\"$satellite\",instance=~ \"$node\"}[5m]))",
           "legendFormat": "Received:{{instance}}",
           "refId": "B"
         }
@@ -800,7 +800,7 @@
           "refId": "A"
         },
         {
-          "expr": "max by (satellite) (rate(storj_sat_day_ingress{instance=~ \"$node\", satellite=~\"$satellite\" }[5m]))",
+          "expr": "sum by (satellite) (rate(storj_sat_day_ingress{instance=~ \"$node\", satellite=~\"$satellite\" }[5m]))",
           "legendFormat": "Received:{{satellite}}",
           "refId": "B"
         }
@@ -1572,7 +1572,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "max by (instance) (storj_diskSpace_used{instance=~\"$node\"})",
+              "expr": "sum by (instance) (storj_diskSpace_used{instance=~\"$node\"})",
               "legendFormat": "{{instance}}",
               "refId": "A"
             }
@@ -1661,7 +1661,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "max by (instance) (storj_bandwidth_used{instance=~\"$node\"})",
+              "expr": "sum by (instance) (storj_bandwidth_used{instance=~\"$node\"})",
               "legendFormat": "{{instance}}",
               "refId": "A"
             }
