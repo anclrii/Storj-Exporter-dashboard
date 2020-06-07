@@ -1673,7 +1673,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "storj_diskSpace_used{instance=~\"$node.*\"}",
+          "expr": "storj_total_diskspace{,type=\"used\",instance=~\"$node.*\"}",
           "format": "time_series",
           "hide": false,
           "instant": false,
