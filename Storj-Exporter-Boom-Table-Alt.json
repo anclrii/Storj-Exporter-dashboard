@@ -13,14 +13,14 @@
     {
       "type": "panel",
       "id": "bargauge",
-      "name": "Bar Gauge",
+      "name": "Bar gauge",
       "version": ""
     },
     {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.7.3"
+      "version": "7.2.2"
     },
     {
       "type": "panel",
@@ -44,7 +44,7 @@
       "type": "panel",
       "id": "yesoreyeram-boomtable-panel",
       "name": "Boom Table",
-      "version": "1.3.0"
+      "version": "1.4.0"
     }
   ],
   "annotations": {
@@ -66,7 +66,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1588916268494,
+  "iteration": 1603823172236,
   "links": [
     {
       "icon": "external link",
@@ -122,6 +122,12 @@
       ],
       "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "short",
       "gauge": {
         "maxValue": 100,
@@ -212,6 +218,12 @@
       ],
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 1,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "decbytes",
       "gauge": {
         "maxValue": 100,
@@ -292,7 +304,7 @@
       "valueName": "current"
     },
     {
-      "activePatternIndex": 7,
+      "activePatternIndex": 6,
       "datasource": "${DS_PROMETHEUS}",
       "debug_mode": false,
       "defaultPattern": {
@@ -335,6 +347,12 @@
         "valueName": "current"
       },
       "default_title_for_rows": "Metric",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 9,
         "w": 16,
@@ -346,10 +364,10 @@
       "id": 304,
       "patterns": [
         {
-          "bgColors": "green|blue|blue",
+          "bgColors": "green|green|green",
           "bgColors_overrides": "0->green|2->red|1->yellow",
           "clickable_cells_link": "",
-          "col_name": "Net Out",
+          "col_name": "Ingress",
           "decimals": 2,
           "defaultBGColor": "",
           "defaultTextColor": "",
@@ -368,11 +386,11 @@
             "value_below": ""
           },
           "format": "decbytes",
-          "name": "Out",
+          "name": "Ingress",
           "null_color": "darkred",
           "null_textcolor": "black",
           "null_value": "No data",
-          "pattern": "^.*Out$",
+          "pattern": "^.*Ingress$",
           "row_col_wrapper": "_",
           "row_name": "_0_",
           "textColors": "red|orange|green",
@@ -385,10 +403,10 @@
           "valueName": "current"
         },
         {
-          "bgColors": "green|green|green",
+          "bgColors": "green|blue|blue",
           "bgColors_overrides": "0->green|2->red|1->yellow",
           "clickable_cells_link": "",
-          "col_name": "Net In",
+          "col_name": "Egress",
           "decimals": 2,
           "defaultBGColor": "",
           "defaultTextColor": "",
@@ -407,11 +425,50 @@
             "value_below": ""
           },
           "format": "decbytes",
-          "name": "In",
+          "name": "Egress",
           "null_color": "darkred",
           "null_textcolor": "black",
           "null_value": "No data",
-          "pattern": "^.*In$",
+          "pattern": "^.*Egress$",
+          "row_col_wrapper": "_",
+          "row_name": "_0_",
+          "textColors": "red|orange|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "current"
+        },
+        {
+          "bgColors": "",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "Disk Available",
+          "decimals": 2,
+          "defaultBGColor": "",
+          "defaultTextColor": "",
+          "delimiter": "|",
+          "displayTemplate": "_value_",
+          "enable_bgColor": true,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "decbytes",
+          "name": "Disk available",
+          "null_color": "darkred",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "^.*Disk available$",
           "row_col_wrapper": "_",
           "row_name": "_0_",
           "textColors": "red|orange|green",
@@ -466,7 +523,7 @@
           "bgColors": "red|orange|green",
           "bgColors_overrides": "0->green|2->red|1->yellow",
           "clickable_cells_link": "",
-          "col_name": "Uptime",
+          "col_name": "Online",
           "decimals": 2,
           "defaultBGColor": "",
           "defaultTextColor": "",
@@ -485,50 +542,11 @@
             "value_below": ""
           },
           "format": "percent",
-          "name": "Uptime",
+          "name": "Online",
           "null_color": "darkred",
           "null_textcolor": "black",
           "null_value": "No data",
-          "pattern": "^.*Uptime$",
-          "row_col_wrapper": "_",
-          "row_name": "_0_",
-          "textColors": "red|orange|green",
-          "textColors_overrides": "0->red|2->green|1->yellow",
-          "thresholds": "99.5,99.8",
-          "time_based_thresholds": [],
-          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
-          "transform_values": "_value_|_value_|_value_",
-          "transform_values_overrides": "0->down|1->up",
-          "valueName": "current"
-        },
-        {
-          "bgColors": "red|orange|green",
-          "bgColors_overrides": "0->green|2->red|1->yellow",
-          "clickable_cells_link": "",
-          "col_name": "Audit",
-          "decimals": 2,
-          "defaultBGColor": "",
-          "defaultTextColor": "",
-          "delimiter": "|",
-          "displayTemplate": "_value_",
-          "enable_bgColor": false,
-          "enable_bgColor_overrides": false,
-          "enable_clickable_cells": false,
-          "enable_textColor": true,
-          "enable_textColor_overrides": false,
-          "enable_time_based_thresholds": false,
-          "enable_transform": false,
-          "enable_transform_overrides": false,
-          "filter": {
-            "value_above": "",
-            "value_below": ""
-          },
-          "format": "percent",
-          "name": "Audit",
-          "null_color": "darkred",
-          "null_textcolor": "black",
-          "null_value": "No data",
-          "pattern": "^.*Audit$",
+          "pattern": "^.*Online$",
           "row_col_wrapper": "_",
           "row_name": "_0_",
           "textColors": "red|orange|green",
@@ -580,19 +598,19 @@
           "valueName": "current"
         },
         {
-          "bgColors": "",
+          "bgColors": "red|orange|green",
           "bgColors_overrides": "0->green|2->red|1->yellow",
           "clickable_cells_link": "",
-          "col_name": "Disk Available",
+          "col_name": "Audit",
           "decimals": 2,
           "defaultBGColor": "",
           "defaultTextColor": "",
           "delimiter": "|",
           "displayTemplate": "_value_",
-          "enable_bgColor": true,
+          "enable_bgColor": false,
           "enable_bgColor_overrides": false,
           "enable_clickable_cells": false,
-          "enable_textColor": false,
+          "enable_textColor": true,
           "enable_textColor_overrides": false,
           "enable_time_based_thresholds": false,
           "enable_transform": false,
@@ -601,17 +619,17 @@
             "value_above": "",
             "value_below": ""
           },
-          "format": "decbytes",
-          "name": "Disk available",
+          "format": "percent",
+          "name": "Audit",
           "null_color": "darkred",
           "null_textcolor": "black",
           "null_value": "No data",
-          "pattern": "^.*Disk available$",
+          "pattern": "^.*Audit$",
           "row_col_wrapper": "_",
           "row_name": "_0_",
           "textColors": "red|orange|green",
           "textColors_overrides": "0->red|2->green|1->yellow",
-          "thresholds": "",
+          "thresholds": "99.5,99.8",
           "time_based_thresholds": [],
           "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
           "transform_values": "_value_|_value_|_value_",
@@ -667,42 +685,48 @@
       },
       "targets": [
         {
-          "expr": "sum(storj_sat_month_egress) by(instance)",
+          "expr": "sum(storj_sat_month_egress{satellite=~\"^$satellite\"}) by(instance)",
           "format": "time_series",
           "hide": false,
           "instant": false,
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}} | Out",
+          "legendFormat": "{{instance}} | Egress",
           "refId": "A"
         },
         {
-          "expr": "- sum(storj_sat_month_ingress) by(instance)",
+          "expr": "sum(storj_sat_month_ingress{satellite=~\"^$satellite\"}) by(instance)",
           "format": "time_series",
           "hide": false,
-          "legendFormat": "{{instance}} | In",
+          "interval": "",
+          "legendFormat": "{{instance}} | Ingress",
           "refId": "B"
         },
         {
-          "expr": "avg(storj_sat_uptime{type=\"score\"}) by(instance) * 100",
+          "expr": "avg(storj_sat_summary{type=\"onlineScore\",satellite=~\"^$satellite\"}) by(instance) * 100",
           "hide": false,
-          "legendFormat": "{{instance}} | Uptime",
+          "interval": "",
+          "legendFormat": "{{instance}} | Online",
           "refId": "C"
         },
         {
-          "expr": "avg(storj_sat_audit{type=\"score\"}) by(instance) * 100",
+          "expr": "avg(storj_sat_audit{type=\"score\",satellite=~\"^$satellite\"}) by(instance) * 100",
           "hide": false,
+          "interval": "",
           "legendFormat": "{{instance}} | Audit",
           "refId": "D"
         },
         {
           "expr": "sum(storj_total_diskspace{type=\"used\"}) by(instance)",
           "hide": false,
+          "interval": "",
           "legendFormat": "{{instance}} | Disk used",
           "refId": "E"
         },
         {
           "expr": "sum(storj_total_diskspace{type=\"available\"}) by(instance)",
           "hide": false,
+          "interval": "",
           "legendFormat": "{{instance}} | Disk available",
           "refId": "G"
         },
@@ -713,7 +737,8 @@
           "refId": "F"
         },
         {
-          "expr": "(sum(storj_sat_summary{type=\"storageSummary\"}) by(instance) / (30 * 24) * 1.5  / 1000^4) + (sum(storj_sat_month_egress) by(instance) / 1000^4 * 20)",
+          "expr": "(sum(storj_sat_summary{type=\"storageSummary\",satellite=~\"^$satellite\"}) by(instance) / (30 * 24) * 1.5  / 1000^4) + (sum(storj_sat_month_egress{satellite=~\"^$satellite\"}) by(instance) / 1000^4 * 20)",
+          "interval": "",
           "legendFormat": "{{instance}} | Earnings",
           "refId": "H"
         }
@@ -721,7 +746,7 @@
       "text_alignment_firstcolumn": "right",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Net IO/sum monthly",
+      "title": "Monthly Summary",
       "type": "yesoreyeram-boomtable-panel"
     },
     {
@@ -736,6 +761,12 @@
       ],
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 2,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "currencyUSD",
       "gauge": {
         "maxValue": 100,
@@ -824,6 +855,12 @@
       ],
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 1,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "decbytes",
       "gauge": {
         "maxValue": 100,
@@ -915,6 +952,12 @@
       ],
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 2,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "currencyUSD",
       "gauge": {
         "maxValue": 100,
@@ -1002,6 +1045,12 @@
       ],
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 1,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "decbytes",
       "gauge": {
         "maxValue": 100,
@@ -1088,6 +1137,13 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 6,
       "fillGradient": 0,
       "gridPos": {
@@ -1115,10 +1171,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "6.3.3",
+      "pluginVersion": "7.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1134,11 +1190,8 @@
           "$$hashKey": "object:1564",
           "alias": "/DiskSum/",
           "color": "#37872D",
-          "dashLength": 10,
-          "dashes": true,
-          "fill": 1,
-          "linewidth": 1,
-          "spaceLength": 15,
+          "fill": 2,
+          "linewidth": 0,
           "stack": "B"
         }
       ],
@@ -1151,6 +1204,7 @@
           "format": "time_series",
           "hide": false,
           "instant": false,
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "DiskSum {{instance}}",
           "refId": "D"
@@ -1160,6 +1214,7 @@
           "format": "time_series",
           "hide": false,
           "instant": false,
+          "interval": "",
           "intervalFactor": 4,
           "legendFormat": "DiskRate {{instance}}",
           "refId": "B"
@@ -1188,7 +1243,7 @@
           "$$hashKey": "object:1599",
           "decimals": 2,
           "format": "decbytes",
-          "label": "Storage IO rate",
+          "label": "Storage sum",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -1198,7 +1253,7 @@
           "$$hashKey": "object:1600",
           "decimals": 2,
           "format": "bps",
-          "label": "Storage sum",
+          "label": "Net I/O rate",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1217,6 +1272,13 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 6,
       "fillGradient": 0,
       "gridPos": {
@@ -1244,10 +1306,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "6.3.3",
+      "pluginVersion": "7.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1262,12 +1324,9 @@
           "$$hashKey": "object:71",
           "alias": "/SumIn/",
           "color": "rgba(65, 107, 60, 0.68)",
-          "dashLength": 10,
-          "dashes": true,
           "fill": 2,
           "legend": false,
-          "linewidth": 1,
-          "spaceLength": 20,
+          "linewidth": 0,
           "stack": "D"
         }
       ],
@@ -1311,8 +1370,9 @@
       "yaxes": [
         {
           "$$hashKey": "object:140",
+          "decimals": 2,
           "format": "decbytes",
-          "label": "Net monthly sum",
+          "label": "Monthly Ingress sum",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1320,9 +1380,9 @@
         },
         {
           "$$hashKey": "object:141",
-          "decimals": null,
+          "decimals": 2,
           "format": "bps",
-          "label": "Net IO rate",
+          "label": "Ingress rate",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1341,6 +1401,13 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 6,
       "fillGradient": 0,
       "gridPos": {
@@ -1368,10 +1435,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "6.3.3",
+      "pluginVersion": "7.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1386,13 +1453,10 @@
           "$$hashKey": "object:70",
           "alias": "/SumOut/",
           "color": "#1F60C4",
-          "dashLength": 10,
-          "dashes": true,
           "fill": 2,
           "legend": false,
           "lines": true,
-          "linewidth": 1,
-          "spaceLength": 20,
+          "linewidth": 0,
           "stack": "C"
         }
       ],
@@ -1441,8 +1505,9 @@
       "yaxes": [
         {
           "$$hashKey": "object:140",
+          "decimals": 2,
           "format": "decbytes",
-          "label": "Net monthly sum",
+          "label": "Monthly Egress sum",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1450,9 +1515,9 @@
         },
         {
           "$$hashKey": "object:141",
-          "decimals": null,
+          "decimals": 2,
           "format": "bps",
-          "label": "Net IO rate",
+          "label": "Egress rate",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1471,6 +1536,13 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 6,
       "fillGradient": 0,
       "gridPos": {
@@ -1498,10 +1570,10 @@
       "linewidth": 0,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "6.3.3",
+      "pluginVersion": "7.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1561,8 +1633,9 @@
       "yaxes": [
         {
           "$$hashKey": "object:1828",
+          "decimals": 2,
           "format": "decbytes",
-          "label": "Net IO rate",
+          "label": "Monthly Ingress sum",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1570,9 +1643,9 @@
         },
         {
           "$$hashKey": "object:1829",
-          "decimals": null,
+          "decimals": 2,
           "format": "bps",
-          "label": "Net monthly sum",
+          "label": "Ingress rate",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1591,6 +1664,13 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 6,
       "fillGradient": 0,
       "gridPos": {
@@ -1618,10 +1698,10 @@
       "linewidth": 0,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "6.3.3",
+      "pluginVersion": "7.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1685,8 +1765,9 @@
       "yaxes": [
         {
           "$$hashKey": "object:2090",
+          "decimals": 2,
           "format": "decbytes",
-          "label": "Net IO rate",
+          "label": "Monthly Egress sum",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1694,9 +1775,9 @@
         },
         {
           "$$hashKey": "object:2091",
-          "decimals": null,
+          "decimals": 2,
           "format": "bps",
-          "label": "Net monthly sum",
+          "label": "Egress rate",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1737,6 +1818,12 @@
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 1,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "decbytes",
       "gauge": {
         "maxValue": 100,
@@ -1746,7 +1833,7 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 3,
         "x": 0,
         "y": 31
@@ -1797,6 +1884,7 @@
           "format": "time_series",
           "hide": false,
           "instant": false,
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "",
           "refId": "A"
@@ -1821,9 +1909,40 @@
       "cacheTimeout": null,
       "datasource": "${DS_PROMETHEUS}",
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "max": 100,
+          "min": 99,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 99.5
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 99.8
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
       "gridPos": {
-        "h": 4,
-        "w": 5,
+        "h": 5,
+        "w": 4,
         "x": 3,
         "y": 31
       },
@@ -1831,44 +1950,17 @@
       "links": [],
       "options": {
         "displayMode": "lcd",
-        "fieldOptions": {
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "decimals": 2,
-            "mappings": [],
-            "max": 100,
-            "min": 99,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "dark-red",
-                  "value": null
-                },
-                {
-                  "color": "#EAB839",
-                  "value": 99.5
-                },
-                {
-                  "color": "semi-dark-green",
-                  "value": 99.8
-                }
-              ]
-            },
-            "unit": "percent"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "orientation": "horizontal",
         "showUnfilled": true
       },
-      "pluginVersion": "6.7.3",
+      "pluginVersion": "7.2.2",
       "repeat": null,
       "repeatDirection": "v",
       "targets": [
@@ -1884,7 +1976,81 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "$node Audit score (* 100)",
+      "title": "$node Audit score",
+      "type": "bargauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_PROMETHEUS}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "max": 100,
+          "min": 99,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 99.5
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 99.8
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 7,
+        "y": 31
+      },
+      "id": 820,
+      "links": [],
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.2.2",
+      "repeatDirection": "v",
+      "targets": [
+        {
+          "expr": "storj_sat_summary{type=\"onlineScore\",instance=~\"$node.*\"} * 100",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{satellite}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "$node Online score",
       "type": "bargauge"
     },
     {
@@ -1894,12 +2060,19 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 6,
       "fillGradient": 0,
       "gridPos": {
-        "h": 4,
-        "w": 16,
-        "x": 8,
+        "h": 5,
+        "w": 13,
+        "x": 11,
         "y": 31
       },
       "hiddenSeries": false,
@@ -1921,10 +2094,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "6.3.3",
+      "pluginVersion": "7.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1992,7 +2165,7 @@
           "$$hashKey": "object:436",
           "decimals": 2,
           "format": "decbytes",
-          "label": "Storage IO rate",
+          "label": "Storage sum",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -2002,7 +2175,7 @@
           "$$hashKey": "object:437",
           "decimals": 2,
           "format": "bps",
-          "label": "Storage sum",
+          "label": "Net I/O rate",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -2027,6 +2200,12 @@
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 2,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "currencyUSD",
       "gauge": {
         "maxValue": 100,
@@ -2036,10 +2215,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 3,
         "x": 0,
-        "y": 35
+        "y": 36
       },
       "id": 469,
       "interval": null,
@@ -2087,6 +2266,7 @@
           "format": "time_series",
           "hide": false,
           "instant": false,
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "",
           "refId": "B"
@@ -2111,52 +2291,56 @@
       "cacheTimeout": null,
       "datasource": "${DS_PROMETHEUS}",
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "max": 105,
+          "min": 70,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 90
+              },
+              {
+                "color": "dark-green",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 5,
         "x": 3,
-        "y": 35
+        "y": 36
       },
       "id": 153,
       "links": [],
       "options": {
         "displayMode": "lcd",
-        "fieldOptions": {
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [],
-            "max": 105,
-            "min": 70,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "light-blue",
-                  "value": null
-                },
-                {
-                  "color": "yellow",
-                  "value": 90
-                },
-                {
-                  "color": "dark-green",
-                  "value": 100
-                }
-              ]
-            }
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "orientation": "horizontal",
         "showUnfilled": true
       },
-      "pluginVersion": "6.7.3",
+      "pluginVersion": "7.2.2",
       "repeat": null,
       "repeatDirection": "v",
       "targets": [
@@ -2183,13 +2367,20 @@
       "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 6,
       "fillGradient": 0,
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 8,
         "x": 8,
-        "y": 35
+        "y": 36
       },
       "hiddenSeries": false,
       "id": 715,
@@ -2210,10 +2401,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "6.3.3",
+      "pluginVersion": "7.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2275,8 +2466,9 @@
       "yaxes": [
         {
           "$$hashKey": "object:656",
+          "decimals": 2,
           "format": "decbytes",
-          "label": "Net IO rate",
+          "label": "Monthly Ingress sum",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -2284,9 +2476,9 @@
         },
         {
           "$$hashKey": "object:657",
-          "decimals": null,
+          "decimals": 2,
           "format": "bps",
-          "label": "Net monthly sum",
+          "label": "Ingress rate",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -2306,13 +2498,20 @@
       "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 6,
       "fillGradient": 0,
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 8,
         "x": 16,
-        "y": 35
+        "y": 36
       },
       "hiddenSeries": false,
       "id": 393,
@@ -2333,10 +2532,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "6.3.3",
+      "pluginVersion": "7.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2402,8 +2601,9 @@
       "yaxes": [
         {
           "$$hashKey": "object:656",
+          "decimals": 2,
           "format": "decbytes",
-          "label": "Net IO rate",
+          "label": "Monthly Egress sum",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -2411,9 +2611,9 @@
         },
         {
           "$$hashKey": "object:657",
-          "decimals": null,
+          "decimals": 2,
           "format": "bps",
-          "label": "Net monthly sum",
+          "label": "Egress rate",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -2427,7 +2627,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 22,
+  "schemaVersion": 26,
   "style": "dark",
   "tags": [
     "storj",
@@ -2444,7 +2644,6 @@
         "definition": "label_values(storj_nodeID_info, instance)",
         "hide": 0,
         "includeAll": true,
-        "index": -1,
         "label": "Node:",
         "multi": true,
         "name": "node",
@@ -2467,7 +2666,6 @@
         "definition": "label_values(storj_sat_summary, satellite)",
         "hide": 0,
         "includeAll": true,
-        "index": -1,
         "label": "Satellite:",
         "multi": true,
         "name": "satellite",
@@ -2506,8 +2704,5 @@
   "timezone": "",
   "title": "Storj-Exporter-Boom-Table-Alt",
   "uid": "bblSUl6Zz",
-  "variables": {
-    "list": []
-  },
-  "version": 7
+  "version": 27
 }
