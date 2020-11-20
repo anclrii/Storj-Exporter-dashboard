@@ -1,7 +1,7 @@
 # Storj Exporter dashboard
 Storj-exporter Grafana dashboard to visualise [Storj-Exporter](https://github.com/anclrii/Storj-Exporter) metrics for multiple Storj storage nodes.
 
-<img src="storj-exporter-boom-table.png" alt="0x187C8C43890fe4C91aFabbC62128D383A90548Dd" hight=450 width=450 align="right"/> 
+<img src="storj-exporter-boom-table.png" alt="0x187C8C43890fe4C91aFabbC62128D383A90548Dd" hight=500 width=500 align="right"/> 
 
 ## Support
 Feel free to raise issues if you find them and also raise a PR if you'd like to contribute.
