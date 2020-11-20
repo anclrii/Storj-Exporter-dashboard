@@ -4,9 +4,9 @@ Storj-exporter Grafana dashboard to visualise [Storj-Exporter](https://github.co
 <img src="storj-exporter-boom-table.png" alt="0x187C8C43890fe4C91aFabbC62128D383A90548Dd" hight=500 width=500 align="right"/> 
 
 ## Support
-<img src="https://github.com/anclrii/Storj-Exporter/raw/master/qr.png" alt="0x187C8C43890fe4C91aFabbC62128D383A90548Dd" hight=100 width=100 align="right"/> 
-
 Feel free to raise issues if you find them and also raise a PR if you'd like to contribute.
+
+<img src="https://github.com/anclrii/Storj-Exporter/raw/master/qr.png" alt="0x187C8C43890fe4C91aFabbC62128D383A90548Dd" hight=100 width=100 align="right"/> 
 
 If you wish to support my work :coffee:, please find my eth wallet address below or scan the qr code:
 
