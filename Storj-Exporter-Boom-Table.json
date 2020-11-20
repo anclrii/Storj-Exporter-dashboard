@@ -56,7 +56,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1605867132570,
+  "iteration": 1605894856615,
   "links": [
     {
       "icon": "external link",
@@ -913,7 +913,7 @@
           "name": "UpToDate",
           "null_color": "darkred",
           "null_textcolor": "black",
-          "null_value": "2",
+          "null_value": "No data",
           "pattern": "^.*UpToDate$",
           "row_col_wrapper": "_",
           "row_name": "_0_",
@@ -1032,7 +1032,7 @@
           "name": "Disqualified",
           "null_color": "darkred",
           "null_textcolor": "black",
-          "null_value": "2",
+          "null_value": "No data",
           "pattern": "^.*Disqualified$",
           "row_col_wrapper": "_",
           "row_name": "_0_",
@@ -1071,7 +1071,7 @@
           "name": "Suspended",
           "null_color": "darkred",
           "null_textcolor": "black",
-          "null_value": "2",
+          "null_value": "No data",
           "pattern": "^.*Suspended$",
           "row_col_wrapper": "_",
           "row_name": "_0_",
@@ -2343,5 +2343,5 @@
   "timezone": "",
   "title": "Storj-Exporter-Boom-Table",
   "uid": "teLFQE2Wkdd",
-  "version": 2
+  "version": 3
 }
