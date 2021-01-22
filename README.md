@@ -39,3 +39,6 @@ Alternatively check out links below for other ways to install/configure these co
 * Storj-Exporter - https://github.com/anclrii/Storj-Exporter#installation
 * Prometheus - https://prometheus.io/docs/prometheus/latest/installation/
 * Grafana - https://grafana.com/docs/grafana/latest/installation/
+
+### Ansible role
+There's an ansible role [toconspiracy/storj-beastmode](https://github.com/toconspiracy/storj-beastmode/tree/stable) for storagenodes that features all above monitoring components.  
