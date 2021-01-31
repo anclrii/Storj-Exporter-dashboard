@@ -703,14 +703,14 @@
           "refId": "B"
         },
         {
-          "expr": "avg(storj_sat_summary{type=\"onlineScore\",satellite=~\"^$satellite\"}) by(instance) * 100",
+          "expr": "avg(storj_sat_summary{type=\"onlineScore\",satellite=~\"^$satellite\"} or storj_sat_audit{type=\"onlineScore\", satellite=~\"^$satellite\"}) by(instance) * 100",
           "hide": false,
           "interval": "",
           "legendFormat": "{{instance}} | Online",
           "refId": "C"
         },
         {
-          "expr": "avg(storj_sat_audit{type=\"score\",satellite=~\"^$satellite\"}) by(instance) * 100",
+          "expr": "avg(storj_sat_audit{type=~\"score|auditScore\",satellite=~\"^$satellite\"}) by(instance) * 100",
           "hide": false,
           "interval": "",
           "legendFormat": "{{instance}} | Audit",
@@ -1965,7 +1965,7 @@
       "repeatDirection": "v",
       "targets": [
         {
-          "expr": "storj_sat_audit{type=\"score\",instance=~\"$node.*\"} * 100",
+          "expr": "storj_sat_audit{type=~\"score|auditScore\",instance=~\"$node.*\"} * 100",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -2038,7 +2038,7 @@
       "repeatDirection": "v",
       "targets": [
         {
-          "expr": "storj_sat_summary{type=\"onlineScore\",instance=~\"$node.*\"} * 100",
+          "expr": "(storj_sat_summary{type=\"onlineScore\",instance=~\"$node.*\"} or storj_sat_audit{type=\"onlineScore\", instance=~\"$node.*\"}) * 100",
           "format": "time_series",
           "hide": false,
           "instant": false,

@@ -1131,7 +1131,7 @@
       "pluginVersion": "7.3.6",
       "targets": [
         {
-          "expr": "min(storj_sat_summary{type=\"onlineScore\", instance=~\"$node.*\"})",
+          "expr": "min(storj_sat_summary{type=\"onlineScore\", instance=~\"$node.*\"} or storj_sat_audit{type=\"onlineScore\", instance=~\"$node.*\"})",
           "interval": "",
           "legendFormat": "Min Uptime",
           "refId": "A"
@@ -1190,7 +1190,7 @@
       "pluginVersion": "7.3.6",
       "targets": [
         {
-          "expr": "min(storj_sat_audit{type=\"score\", instance=~\"$node.*\"})",
+          "expr": "min(storj_sat_audit{type=~\"score|auditScore\", instance=~\"$node.*\"})",
           "interval": "",
           "legendFormat": "Min Audit",
           "refId": "A"
@@ -2276,14 +2276,14 @@
               "refId": "J"
             },
             {
-              "expr": "avg(storj_sat_summary{type=\"onlineScore\", instance=~\"$node.*\"}) by(instance) * 100",
+              "expr": "avg(storj_sat_summary{type=\"onlineScore\", instance=~\"$node.*\"} or storj_sat_audit{type=\"onlineScore\", instance=~\"$node.*\"}) by(instance) * 100",
               "hide": false,
               "interval": "",
               "legendFormat": "{{instance}} | Uptime",
               "refId": "C"
             },
             {
-              "expr": "avg(storj_sat_audit{type=\"score\", instance=~\"$node.*\"}) by(instance) * 100",
+              "expr": "avg(storj_sat_audit{type=~\"score|auditScore\", instance=~\"$node.*\"}) by(instance) * 100",
               "hide": false,
               "interval": "",
               "legendFormat": "{{instance}} | Audit",
@@ -5342,14 +5342,14 @@
               "refId": "E"
             },
             {
-              "expr": "avg(storj_sat_summary{type=\"onlineScore\", instance=~\"$node.*\"}) by(url) * 100",
+              "expr": "avg(storj_sat_summary{type=\"onlineScore\", instance=~\"$node.*\"} or storj_sat_audit{type=\"onlineScore\", instance=~\"$node.*\"}) by(url) * 100",
               "hide": false,
               "interval": "",
               "legendFormat": "{{url}} | Uptime",
               "refId": "C"
             },
             {
-              "expr": "avg(storj_sat_audit{type=\"score\",instance=~\"$node.*\"}) by(url) * 100",
+              "expr": "avg(storj_sat_audit{type=~\"score|auditScore\",instance=~\"$node.*\"}) by(url) * 100",
               "hide": false,
               "legendFormat": "{{url}} | Audit",
               "refId": "D"
