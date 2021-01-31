@@ -755,7 +755,7 @@
       "pluginVersion": "6.3.3",
       "targets": [
         {
-          "expr": "avg(storj_sat_audit{type=\"score\"}) by(instance) * 100",
+          "expr": "avg(storj_sat_audit{type=~\"score|auditScore\"}) by(instance) * 100",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -1596,7 +1596,7 @@
       "repeatDirection": "v",
       "targets": [
         {
-          "expr": "storj_sat_audit{type=\"score\",instance=~\"$node.*\"} * 100",
+          "expr": "storj_sat_audit{type=~\"score|auditScore\",instance=~\"$node.*\"} * 100",
           "format": "time_series",
           "hide": false,
           "instant": false,
