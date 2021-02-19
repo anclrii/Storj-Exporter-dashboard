@@ -59,7 +59,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1613542695534,
+  "iteration": 1613721802387,
   "links": [
     {
       "icon": "external link",
@@ -2257,7 +2257,7 @@
               "refId": "A"
             },
             {
-              "expr": "sum(storj_sat_month_egress{type=\"repair\"}) by(instance)",
+              "expr": "sum(storj_sat_month_egress{type=\"repair\",instance=~\"$node.*\"}) by(instance)",
               "interval": "",
               "legendFormat": "{{instance}} | Repair",
               "refId": "P"
@@ -2324,7 +2324,7 @@
               "refId": "K"
             },
             {
-              "expr": "avg(storj_sat_audit{type=\"suspensionScore\"}) by(instance) * 100",
+              "expr": "avg(storj_sat_audit{type=\"suspensionScore\",instance=~\"$node.*\"}) by(instance) * 100",
               "interval": "",
               "legendFormat": "{{instance}} | Suspension",
               "refId": "O"
@@ -6326,7 +6326,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 193
       },
       "id": 672,
       "panels": [
@@ -7172,5 +7172,5 @@
   "timezone": "",
   "title": "Storj-Exporter-Boom-Table-combined",
   "uid": "a4ea4h4ej6kmv",
-  "version": 11
+  "version": 12
 }
