@@ -14,7 +14,9 @@ If you wish to support my work :coffee:, please find my eth wallet address below
 `0x187C8C43890fe4C91aFabbC62128D383A90548Dd`
 
 ## Installation on existing Grafana instance:
-Import Storj-Exporter-Boom-Table.json via your Grafana UI ("+" -> Import), select your Prometheus datasorce at the top-left of the dashboard
+Import Storj-Exporter-Boom-Table.json via your Grafana UI ("+" -> Import), select your Prometheus datasource at the top-left of the dashboard.
+
+Alternately, **import by ID**, simply paste in 13810, which is the [grafana dashboards entry](https://grafana.com/grafana/dashboards/13810) for this repo.
 
 ## Installing full monitoring stack
 Monitoring stack required for this dashboard includes the following components:
