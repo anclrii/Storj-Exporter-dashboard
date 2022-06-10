@@ -1,16 +1,26 @@
 {
-  "__inputs": [],
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": [],
   "__requires": [
     {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.3.3"
+      "version": "8.5.5"
     },
     {
       "type": "panel",
       "id": "graph",
-      "name": "Graph",
+      "name": "Graph (old)",
       "version": ""
     },
     {
@@ -27,12 +37,6 @@
     },
     {
       "type": "panel",
-      "id": "text",
-      "name": "Text",
-      "version": ""
-    },
-    {
-      "type": "panel",
       "id": "yesoreyeram-boomtable-panel",
       "name": "Boom Table",
       "version": "1.3.0"
@@ -42,22 +46,43 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "description": "",
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1606659281751,
+  "iteration": 1654900958206,
   "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": true,
+      "title": "Dashboard Github page",
+      "tooltip": "",
+      "type": "link",
+      "url": "https://github.com/anclrii/Storj-Exporter-dashboard"
+    },
     {
       "icon": "external link",
       "tags": [],
@@ -74,21 +99,16 @@
       "title": "Storj-Exporter forum thread",
       "type": "link",
       "url": "https://forum.storj.io/t/prometheus-storj-exporter/"
-    },
-    {
-      "icon": "bolt",
-      "tags": [],
-      "targetBlank": true,
-      "title": "Support the project 👇",
-      "tooltip": "",
-      "type": "link",
-      "url": "https://github.com/anclrii/Storj-Exporter#support"
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": "$datasource",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -101,22 +121,27 @@
       "type": "row"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "$datasource",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [
             {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
             }
           ],
           "min": 0,
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -137,7 +162,6 @@
         "y": 1
       },
       "id": 330,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -152,11 +176,16 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "8.5.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "count(storj_nodeID_info{instance=~\"$node.*\"})",
           "format": "time_series",
           "hide": false,
@@ -167,28 +196,135 @@
           "refId": "D"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Nodes online",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "$datasource",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "$ held"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "rgb(161, 185, 159)",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 2,
+        "y": 1
+      },
+      "id": 468,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(storj_payout_currentMonth{type=~\"payout|held\",instance=~\"$node.*\"}) / 100",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "$ total",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(storj_payout_currentMonth{type=~\"held\",instance=~\"$node.*\"})/100",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "$ held",
+          "refId": "B"
+        }
+      ],
+      "title": "Payout summary",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "decimals": 3,
           "mappings": [
             {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -221,11 +357,10 @@
       "gridPos": {
         "h": 4,
         "w": 5,
-        "x": 2,
+        "x": 7,
         "y": 1
       },
       "id": 328,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -240,11 +375,16 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "8.5.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_sat_month_egress{instance=~\"$node.*\"})",
           "format": "time_series",
           "hide": false,
@@ -255,6 +395,10 @@
           "refId": "D"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_sat_month_ingress{instance=~\"$node.*\"})",
           "format": "time_series",
           "hide": false,
@@ -265,21 +409,19 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Net IO total",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "$datasource",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "dark-blue",
-            "mode": "fixed"
+            "mode": "thresholds"
           },
-          "custom": {},
           "links": [],
           "mappings": [],
           "min": 0,
@@ -344,8 +486,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 10,
-        "x": 7,
+        "w": 12,
+        "x": 12,
         "y": 1
       },
       "id": 302,
@@ -362,11 +504,16 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "8.5.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_total_diskspace{type=\"available\",instance=~\"$node.*\"})",
           "format": "time_series",
           "hide": false,
@@ -377,6 +524,10 @@
           "refId": "D"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum (storj_total_diskspace{type=\"used\",instance=~\"$node.*\"})",
           "format": "time_series",
           "hide": false,
@@ -387,6 +538,10 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum (storj_total_diskspace{type=\"available\",instance=~\"$node.*\"}) - sum (storj_total_diskspace{type=\"used\",instance=~\"$node.*\"})",
           "format": "time_series",
           "hide": false,
@@ -397,6 +552,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum (storj_total_diskspace{type=\"trash\",instance=~\"$node.*\"})",
           "format": "time_series",
           "hide": false,
@@ -407,137 +566,16 @@
           "refId": "C"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Storage total",
       "type": "stat",
       "valueFontSize": "80%"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "$datasource",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null,
-            "filterable": false
-          },
-          "decimals": 2,
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "min": 0,
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "currencyUSD"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "$ held"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "yellow",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
+      "activePatternIndex": 9,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
       },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 17,
-        "y": 1
-      },
-      "id": 468,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "vertical",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.3.3",
-      "targets": [
-        {
-          "expr": "sum(storj_payout_currentMonth{type=~\"payout|held\",instance=~\"$node.*\"}) / 100",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "$ total",
-          "refId": "D"
-        },
-        {
-          "expr": "sum(storj_payout_currentMonth{type=~\"held\",instance=~\"$node.*\"})/100",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "$ held",
-          "refId": "B"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Payout summary",
-      "type": "stat"
-    },
-    {
-      "datasource": "$datasource",
-      "description": "If you wish to support my work ☕, please find my eth wallet address below or scan the qr code:\n\n`0x187C8C43890fe4C91aFabbC62128D383A90548Dd`",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 21,
-        "y": 1
-      },
-      "id": 594,
-      "options": {
-        "content": "<p style=\"text-align: center;\"><a href=\"https://github.com/anclrii/Storj-Exporter#support\" target=\"_blank\" rel=\"noopener\" title=\"0x187c8c43890fe4c91afabbc62128d383a90548dd\"><img  src=\"https://github.com/anclrii/Storj-Exporter/raw/master/qr.png\" alt=\"0x187c8c43890fe4c91afabbc62128d383a90548dd\" width=\"95\" height=\"95\" /></a>",
-        "mode": "html"
-      },
-      "pluginVersion": "7.3.3",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Scan me ",
-      "type": "text"
-    },
-    {
-      "activePatternIndex": 3,
-      "datasource": "$datasource",
       "debug_mode": false,
       "defaultPattern": {
         "bgColors": "green|orange|red",
@@ -580,29 +618,6 @@
       },
       "default_title_for_rows": "",
       "description": "* DQ - Disqualified\n* SU - Suspended\n* UTD - Up to date",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null,
-            "filterable": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
       "gridPos": {
         "h": 7,
         "w": 24,
@@ -1127,11 +1142,15 @@
       "pluginVersion": "7.3.0",
       "row_col_wrapper": "_",
       "sorting_props": {
-        "col_index": -1,
+        "col_index": 0,
         "direction": "desc"
       },
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_sat_month_egress{instance=~\"$node.*\"}) by(instance)",
           "format": "time_series",
           "hide": false,
@@ -1142,6 +1161,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_sat_month_ingress{instance=~\"$node.*\"}) by(instance)",
           "format": "time_series",
           "hide": false,
@@ -1150,6 +1173,10 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_total_diskspace{type=\"available\", instance=~\"$node.*\"}) by(instance)",
           "format": "time_series",
           "hide": false,
@@ -1158,6 +1185,10 @@
           "refId": "G"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_total_diskspace{type=\"used\", instance=~\"$node.*\"}) by(instance)",
           "hide": false,
           "interval": "",
@@ -1165,6 +1196,10 @@
           "refId": "E"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_total_diskspace{type=\"trash\", instance=~\"$node.*\"}) by(instance)",
           "hide": false,
           "interval": "",
@@ -1172,18 +1207,31 @@
           "refId": "M"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_payout_currentMonth{type=~\"payout|held\",instance=~\"$node.*\"}) by (instance) / 100",
           "interval": "",
           "legendFormat": "{{instance}} | Earnings",
           "refId": "H"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_payout_currentMonth{type=~\"held\",instance=~\"$node.*\"}) by (instance) / 100",
           "interval": "",
           "legendFormat": "{{instance}} | Held",
           "refId": "J"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
           "expr": "avg(storj_sat_summary{type=\"onlineScore\", instance=~\"$node.*\"} or storj_sat_audit{type=\"onlineScore\", instance=~\"$node.*\"}) by(instance) * 100",
           "hide": false,
           "interval": "",
@@ -1191,6 +1239,11 @@
           "refId": "C"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
           "expr": "avg(storj_sat_audit{type=~\"score|auditScore\", instance=~\"$node.*\"}) by(instance) * 100",
           "hide": false,
           "interval": "",
@@ -1198,7 +1251,12 @@
           "refId": "D"
         },
         {
-          "expr": "storj_node_info{version!=\"\",instance=~\"$node.*\"}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": false,
+          "expr": "storj_node_info{instance=~\"$node.*\", type=\"version\"}",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -1206,13 +1264,22 @@
           "refId": "I"
         },
         {
-          "expr": "avg (storj_upToDate_info{instance=~\"$node.*\"}) by (instance)",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "avg (storj_node_info{instance=~\"$node.*\", type=\"upToDate\"}) by (instance)",
           "hide": false,
           "interval": "",
           "legendFormat": "{{instance}} | UpToDate",
           "refId": "F"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "avg (storj_sat_summary{type=\"disqualified\",instance=~\"$node.*\"}) by(instance)",
           "hide": false,
           "interval": "",
@@ -1220,6 +1287,10 @@
           "refId": "K"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "avg (storj_sat_summary{type=\"suspended\",instance=~\"$node.*\"}) by(instance)",
           "hide": false,
           "interval": "",
@@ -1228,8 +1299,6 @@
         }
       ],
       "text_alignment_firstcolumn": "right",
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Node summary table",
       "type": "yesoreyeram-boomtable-panel"
     },
@@ -1238,11 +1307,12 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$datasource",
-      "decimals": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "links": []
         },
         "overrides": []
@@ -1266,7 +1336,6 @@
         "min": false,
         "rightSide": false,
         "show": false,
-        "sideWidth": null,
         "total": false,
         "values": false
       },
@@ -1277,23 +1346,26 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "8.5.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:145",
           "alias": "/RateOut/",
           "color": "#96D98D",
-          "stack": "A"
-        },
-        {
-          "alias": "/RateIn/",
-          "color": "#FFB357",
-          "stack": "B",
+          "stack": "A",
           "transform": "negative-Y"
         },
         {
+          "$$hashKey": "object:146",
+          "alias": "/RateIn/",
+          "color": "#5794F2",
+          "stack": "B"
+        },
+        {
+          "$$hashKey": "object:147",
           "alias": "0",
           "color": "rgb(4, 4, 4)",
           "hideTooltip": true,
@@ -1305,6 +1377,11 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
           "expr": "sum(rate(storj_sat_month_egress{instance=~\"$node.*\"}[5m])) by(instance) * 8",
           "format": "time_series",
           "hide": false,
@@ -1315,6 +1392,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(rate(storj_sat_month_ingress{instance=~\"$node.*\"}[5m])) by(instance) * 8",
           "hide": false,
           "interval": "",
@@ -1323,6 +1404,10 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "0",
           "interval": "",
           "legendFormat": "0",
@@ -1330,9 +1415,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Net IO by node (stacked)",
       "tooltip": {
         "shared": true,
@@ -1341,28 +1424,23 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
+          "$$hashKey": "object:176",
           "format": "bps",
-          "label": "Rate-in (-) / Rate-out (+)",
+          "label": "Rate-out (-) / Rate-in (+)",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
-          "decimals": null,
+          "$$hashKey": "object:177",
           "format": "bps",
           "label": "Net monthly sum",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
@@ -1376,11 +1454,12 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$datasource",
-      "decimals": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "links": []
         },
         "overrides": []
@@ -1404,7 +1483,6 @@
         "min": false,
         "rightSide": false,
         "show": false,
-        "sideWidth": null,
         "total": false,
         "values": false
       },
@@ -1415,38 +1493,47 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "8.5.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:499",
           "alias": "/RateOut/",
+          "color": "#96d98d",
           "stack": "A",
-          "yaxis": 2
-        },
-        {
-          "alias": "/RateIn/",
-          "stack": "B",
           "transform": "negative-Y",
           "yaxis": 2
         },
         {
-          "alias": "/SumOut/",
-          "fill": 2,
-          "fillGradient": 0,
-          "legend": false,
-          "linewidth": 0,
-          "stack": "C"
+          "$$hashKey": "object:500",
+          "alias": "/RateIn/",
+          "color": "#5794F2",
+          "stack": "B",
+          "yaxis": 2
         },
         {
-          "alias": "/SumIn/",
+          "$$hashKey": "object:501",
+          "alias": "/SumOut/",
+          "color": "rgb(29, 74, 23)",
           "fill": 2,
           "fillGradient": 0,
           "legend": false,
-          "linewidth": 0,
-          "stack": "D",
+          "linewidth": 1,
+          "stack": "C",
           "transform": "negative-Y"
+        },
+        {
+          "$$hashKey": "object:502",
+          "alias": "/SumIn/",
+          "color": "rgb(15, 59, 128)",
+          "dashes": false,
+          "fill": 2,
+          "fillGradient": 0,
+          "legend": false,
+          "linewidth": 1,
+          "stack": "D"
         }
       ],
       "spaceLength": 10,
@@ -1454,47 +1541,61 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(storj_sat_month_egress{type!=\"usage\", instance=~\"$node.*\"}) by(type,instance)",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(storj_sat_month_egress{type=\"repair\", instance=~\"$node.*\"}) by(instance)",
           "format": "time_series",
           "hide": false,
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "SumOut-{{type}}-{{instance}}",
+          "legendFormat": "SumOut-{{instance}}",
           "refId": "C"
         },
         {
-          "expr": "sum(storj_sat_month_ingress{type!=\"usage\", instance=~\"$node.*\"}) by(type,instance)",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(storj_sat_month_ingress{type=\"repair\", instance=~\"$node.*\"}) by(instance)",
           "format": "time_series",
           "hide": false,
           "interval": "",
-          "legendFormat": "SumIn-{{type}}-{{instance}}",
+          "legendFormat": "SumIn-{{instance}}",
           "refId": "D"
         },
         {
-          "expr": "sum(rate(storj_sat_month_egress{type!=\"usage\", instance=~\"$node.*\"}[5m])) by(type,instance) * 8",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(rate(storj_sat_month_egress{type=\"repair\", instance=~\"$node.*\"}[5m])) by(instance) * 8",
           "format": "time_series",
           "hide": false,
           "instant": false,
           "interval": "",
           "intervalFactor": 4,
-          "legendFormat": "RateOut-{{type}}-{{instance}}",
+          "legendFormat": "RateOut-{{instance}}",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(storj_sat_month_ingress{type!=\"usage\", instance=~\"$node.*\"}[5m])) by(type,instance) * 8",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(rate(storj_sat_month_ingress{type=\"repair\", instance=~\"$node.*\"}[5m])) by(instance) * 8",
           "hide": false,
           "interval": "",
           "intervalFactor": 4,
-          "legendFormat": "RateIn-{{type}}-{{instance}}",
+          "legendFormat": "RateIn-{{instance}}",
           "refId": "B"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
-      "title": "Audit/Repair IO/sum by node (monthly stacked)",
+      "title": "Repair IO/sum by node (monthly stacked)",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -1502,34 +1603,28 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
+          "$$hashKey": "object:551",
           "format": "decbytes",
-          "label": "Sum-in (-) / Sum-out (+)",
+          "label": "Sum-out (-) / Sum-in (+)",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
-          "decimals": null,
+          "$$hashKey": "object:552",
           "format": "bps",
-          "label": "Rate-in (-) / Rate-out (+)",
+          "label": "Rate-in (+) / Rate-out (-)",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": true,
-        "alignLevel": null
+        "align": true
       }
     },
     {
@@ -1537,11 +1632,12 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$datasource",
-      "decimals": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "links": []
         },
         "overrides": []
@@ -1565,7 +1661,6 @@
         "min": false,
         "rightSide": false,
         "show": false,
-        "sideWidth": null,
         "total": false,
         "values": false
       },
@@ -1576,14 +1671,15 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "8.5.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:237",
           "alias": "/DiskRate/",
-          "color": "#FFB357"
+          "color": "#73BF69"
         }
       ],
       "spaceLength": 10,
@@ -1591,6 +1687,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(delta(storj_total_diskspace{type=\"used\", instance=~\"$node.*\"}[5m])) by(instance) * 8 / 300",
           "format": "time_series",
           "hide": false,
@@ -1602,9 +1702,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Storage IO by node (stacked)",
       "tooltip": {
         "shared": true,
@@ -1613,40 +1711,38 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
+          "$$hashKey": "object:244",
           "decimals": 2,
           "format": "bps",
-          "label": "Rate-in (-) / Rate-out (+)",
+          "label": "",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
+          "$$hashKey": "object:245",
           "decimals": 2,
           "format": "bps",
           "label": "Storage sum",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
       "collapsed": false,
-      "datasource": "$datasource",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1660,8 +1756,11 @@
       "type": "row"
     },
     {
-      "activePatternIndex": 7,
-      "datasource": "$datasource",
+      "activePatternIndex": -2,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "debug_mode": false,
       "defaultPattern": {
         "bgColors": "green|orange|red",
@@ -1703,14 +1802,8 @@
         "valueName": "current"
       },
       "default_title_for_rows": "Metric",
-      "description": "* DQ - Disqualified\n* SU - Suspended\n* UTD - Up to date",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "font_size": "",
+      "description": "* DQ - Disqualified\n* SU - Suspended",
+      "font_size": "11px",
       "gridPos": {
         "h": 7,
         "w": 12,
@@ -1939,7 +2032,7 @@
             "value_above": "",
             "value_below": ""
           },
-          "format": "short",
+          "format": "none",
           "name": "Vetting",
           "null_color": "darkred",
           "null_textcolor": "black",
@@ -1999,7 +2092,7 @@
           "bgColors": "red|green",
           "bgColors_overrides": "0->green|2->red|1->yellow",
           "clickable_cells_link": "",
-          "col_name": "Susp",
+          "col_name": "SU",
           "decimals": "0",
           "defaultBGColor": "",
           "defaultTextColor": "",
@@ -2038,11 +2131,15 @@
       "pluginVersion": "6.3.3",
       "row_col_wrapper": "_",
       "sorting_props": {
-        "col_index": -1,
+        "col_index": 0,
         "direction": "desc"
       },
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_sat_month_egress{instance=~\"$node.*\"}) by(url)",
           "format": "time_series",
           "hide": false,
@@ -2053,6 +2150,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_sat_month_ingress{instance=~\"$node.*\"}) by(url)",
           "format": "time_series",
           "hide": false,
@@ -2060,43 +2161,59 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "(sum(storj_sat_summary{type=\"storageSummary\",instance=~\"$node.*\"}) by(url) / (30 * 24) * 1.5  / 1000^4) + (sum(storj_sat_month_egress{instance=~\"$node.*\"}) by(url) / 1000^4 * 20)",
           "interval": "",
           "legendFormat": "{{url}} | Payout",
           "refId": "H"
         },
         {
-          "expr": "sum(storj_sat_audit{type=\"successCount\",instance=~\"$node.*\"}) by (url)",
-          "legendFormat": "{{url}} | Vetting",
-          "refId": "E"
-        },
-        {
-          "expr": "avg(storj_sat_summary{type=\"onlineScore\", instance=~\"$node.*\"} or storj_sat_audit{type=\"onlineScore\", instance=~\"$node.*\"}) by(url) * 100",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "avg(storj_sat_audit{type=\"onlineScore\", instance=~\"$node.*\"}) by(url) * 100",
           "hide": false,
           "interval": "",
           "legendFormat": "{{url}} | Uptime",
           "refId": "C"
         },
         {
-          "expr": "avg(storj_sat_audit{type=~\"score|auditScore\",instance=~\"$node.*\"}) by(url) * 100",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "avg(storj_sat_audit{type=\"auditScore\",instance=~\"$node.*\"}) by(url) * 100",
           "hide": false,
+          "interval": "",
           "legendFormat": "{{url}} | Audit",
           "refId": "D"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_sat_summary{type=\"disqualified\",instance=~\"$node.*\"}) by (url)",
           "legendFormat": "{{url}} | Disqualified",
           "refId": "F"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(storj_sat_summary{type=\"suspended\",instance=~\"$node.*\"}) by (url)",
           "legendFormat": "{{url}} | Suspended",
           "refId": "G"
         }
       ],
       "text_alignment_firstcolumn": "right",
-      "timeFrom": null,
-      "timeShift": null,
       "title": "$node Satellite summary table (monthly)",
       "type": "yesoreyeram-boomtable-panel"
     },
@@ -2105,12 +2222,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "$datasource",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "decimals": 1,
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "links": []
         },
         "overrides": []
@@ -2134,7 +2253,6 @@
         "min": false,
         "rightSide": true,
         "show": false,
-        "sideWidth": null,
         "total": false,
         "values": false
       },
@@ -2145,44 +2263,47 @@
         "alertThreshold": false
       },
       "percentage": false,
-      "pluginVersion": "7.3.3",
+      "pluginVersion": "8.5.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "repeat": null,
       "repeatDirection": "v",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:1708",
           "alias": "/RateOut/",
           "color": "#96D98D",
           "stack": "A",
-          "yaxis": 2
-        },
-        {
-          "alias": "/RateIn/",
-          "color": "#FFCB7D",
-          "stack": "B",
           "transform": "negative-Y",
           "yaxis": 2
         },
         {
+          "$$hashKey": "object:1709",
+          "alias": "/RateIn/",
+          "color": "#5794F2",
+          "stack": "B",
+          "yaxis": 2
+        },
+        {
+          "$$hashKey": "object:1710",
           "alias": "/SumOut/",
           "color": "#37872D",
           "fill": 2,
           "fillGradient": 0,
           "legend": false,
-          "linewidth": 0,
-          "stack": "C"
+          "linewidth": 1,
+          "stack": "C",
+          "transform": "negative-Y"
         },
         {
+          "$$hashKey": "object:1711",
           "alias": "/SumIn/",
-          "color": "#FFB357",
+          "color": "rgb(12, 56, 122)",
           "fill": 2,
           "fillGradient": 0,
           "legend": false,
-          "linewidth": 0,
-          "stack": "D",
-          "transform": "negative-Y"
+          "linewidth": 1,
+          "stack": "D"
         }
       ],
       "spaceLength": 10,
@@ -2190,6 +2311,34 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(storj_sat_month_egress{instance=~\"$node.*\"})",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "intervalFactor": 1,
+          "legendFormat": "SumOut {{instance}}",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(storj_sat_month_ingress{instance=~\"$node.*\"})",
+          "format": "time_series",
+          "hide": false,
+          "legendFormat": "SumIn {{instance}}",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(irate(storj_sat_month_egress{instance=~\"$node.*\"}[5m])) * 8",
           "format": "time_series",
           "hide": false,
@@ -2200,34 +2349,20 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(irate(storj_sat_month_ingress{instance=~\"$node.*\"}[5m])) * 8",
           "hide": false,
           "interval": "",
           "intervalFactor": 4,
           "legendFormat": "RateIn {{instance}}",
           "refId": "B"
-        },
-        {
-          "expr": "sum(storj_sat_month_egress{instance=~\"$node.*\"})",
-          "format": "time_series",
-          "hide": false,
-          "instant": false,
-          "intervalFactor": 1,
-          "legendFormat": "SumOut {{instance}}",
-          "refId": "C"
-        },
-        {
-          "expr": "sum(storj_sat_month_ingress{instance=~\"$node.*\"})",
-          "format": "time_series",
-          "hide": false,
-          "legendFormat": "SumIn {{instance}}",
-          "refId": "D"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "$node Net IO/sum (monthly)",
       "tooltip": {
         "shared": true,
@@ -2236,39 +2371,33 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
+          "$$hashKey": "object:1768",
           "format": "decbytes",
-          "label": "Sum-in (-) / Sum-out (+)",
+          "label": "Sum-out (-) / Sum-in (+) / ",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
-          "decimals": null,
+          "$$hashKey": "object:1769",
           "format": "bps",
-          "label": "Rate-in (-) / Rate-out (+)",
+          "label": "Rate-in (+) / Rate-out (-)",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": true,
-        "alignLevel": null
+        "align": true
       }
     }
   ],
-  "refresh": "5m",
-  "schemaVersion": 26,
+  "refresh": "",
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [
     "storj",
@@ -2284,12 +2413,11 @@
           "text": "Prometheus",
           "value": "Prometheus"
         },
-        "error": null,
         "hide": 0,
         "includeAll": false,
-        "label": null,
+        "label": "",
         "multi": false,
-        "name": "datasource",
+        "name": "DS_PROMETHEUS",
         "options": [],
         "query": "prometheus",
         "queryValue": "",
@@ -2299,24 +2427,27 @@
         "type": "datasource"
       },
       {
-        "allValue": null,
         "current": {},
-        "datasource": "$datasource",
-        "definition": "label_values(storj_nodeID_info, instance)",
-        "error": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(instance)",
         "hide": 0,
         "includeAll": true,
         "label": "Node:",
         "multi": true,
         "name": "node",
         "options": [],
-        "query": "label_values(storj_nodeID_info, instance)",
-        "refresh": 1,
+        "query": {
+          "query": "label_values(instance)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -2324,7 +2455,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -2344,5 +2475,6 @@
   "timezone": "",
   "title": "Storj-Exporter-Boom-Table",
   "uid": "teLFQE2Wkdd",
-  "version": 5
+  "version": 6,
+  "weekStart": ""
 }
