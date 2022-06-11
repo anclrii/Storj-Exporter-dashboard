@@ -69,7 +69,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1654900958206,
+  "iteration": 1654935521358,
   "links": [
     {
       "asDropdown": false,
@@ -2165,9 +2165,11 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "(sum(storj_sat_summary{type=\"storageSummary\",instance=~\"$node.*\"}) by(url) / (30 * 24) * 1.5  / 1000^4) + (sum(storj_sat_month_egress{instance=~\"$node.*\"}) by(url) / 1000^4 * 20)",
+          "editorMode": "code",
+          "expr": "(sum(storj_sat_summary{type=\"storageSummary\",instance=~\"$node.*\"}) by(url) / (30 * 24) * 1.5  / 1000^4) + (sum(storj_sat_month_egress{instance=~\"$node.*\",type=\"usage\"}) by(url) / 1000^4 * 20) + (sum(storj_sat_month_egress{instance=~\"$node.*\",type=\"repair\"}) by(url) / 1000^4 * 10)",
           "interval": "",
           "legendFormat": "{{url}} | Payout",
+          "range": true,
           "refId": "H"
         },
         {
@@ -2475,6 +2477,6 @@
   "timezone": "",
   "title": "Storj-Exporter-Boom-Table",
   "uid": "teLFQE2Wkdd",
-  "version": 6,
+  "version": 9,
   "weekStart": ""
 }
