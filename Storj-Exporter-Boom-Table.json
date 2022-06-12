@@ -69,7 +69,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1654935521358,
+  "iteration": 1654992031023,
   "links": [
     {
       "asDropdown": false,
@@ -186,7 +186,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "count(storj_nodeID_info{instance=~\"$node.*\"})",
+          "expr": "count(storj_node_info{instance=~\"$node.*\",type=\"nodeID\"})",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -2457,7 +2457,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -2477,6 +2477,6 @@
   "timezone": "",
   "title": "Storj-Exporter-Boom-Table",
   "uid": "teLFQE2Wkdd",
-  "version": 9,
+  "version": 11,
   "weekStart": ""
 }
