@@ -15,7 +15,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "8.5.5"
+      "version": "9.0.1"
     },
     {
       "type": "panel",
@@ -69,7 +69,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1654992031023,
+  "iteration": 1656078899169,
   "links": [
     {
       "asDropdown": false,
@@ -179,7 +179,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.5.5",
+      "pluginVersion": "9.0.1",
       "targets": [
         {
           "datasource": {
@@ -275,7 +275,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.5",
+      "pluginVersion": "9.0.1",
       "targets": [
         {
           "datasource": {
@@ -378,7 +378,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.5.5",
+      "pluginVersion": "9.0.1",
       "targets": [
         {
           "datasource": {
@@ -507,7 +507,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.5.5",
+      "pluginVersion": "9.0.1",
       "targets": [
         {
           "datasource": {
@@ -571,7 +571,7 @@
       "valueFontSize": "80%"
     },
     {
-      "activePatternIndex": 9,
+      "activePatternIndex": -2,
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
@@ -1137,6 +1137,46 @@
           "transform_values": "_value_|_value_|_value_",
           "transform_values_overrides": "0->down|1->up",
           "valueName": "current"
+        },
+        {
+          "bgColors": "",
+          "bgColors_overrides": "0->green|2->red|1->yellow",
+          "clickable_cells_link": "",
+          "col_name": "Expectations",
+          "decimals": 2,
+          "defaultBGColor": "green",
+          "defaultTextColor": "",
+          "delimiter": "|",
+          "disabled": false,
+          "displayTemplate": "_value_",
+          "enable_bgColor": false,
+          "enable_bgColor_overrides": false,
+          "enable_clickable_cells": false,
+          "enable_textColor": false,
+          "enable_textColor_overrides": false,
+          "enable_time_based_thresholds": false,
+          "enable_transform": false,
+          "enable_transform_overrides": false,
+          "filter": {
+            "value_above": "",
+            "value_below": ""
+          },
+          "format": "currencyUSD",
+          "name": "Payout",
+          "null_color": "darkred",
+          "null_textcolor": "black",
+          "null_value": "No data",
+          "pattern": "^.*Payout_expectations$",
+          "row_col_wrapper": "_",
+          "row_name": "_0_",
+          "textColors": "green|green",
+          "textColors_overrides": "0->red|2->green|1->yellow",
+          "thresholds": "",
+          "time_based_thresholds": [],
+          "tooltipTemplate": "Series : _series_ <br/>Row Name : _row_name_ <br/>Col Name : _col_name_ <br/>Value : _value_",
+          "transform_values": "_value_|_value_|_value_",
+          "transform_values_overrides": "0->down|1->up",
+          "valueName": "current"
         }
       ],
       "pluginVersion": "7.3.0",
@@ -1215,6 +1255,19 @@
           "interval": "",
           "legendFormat": "{{instance}} | Earnings",
           "refId": "H"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(storj_payout_currentMonth{type=~\"currentMonthExpectations\",instance=~\"$node.*\"}) by (instance) / 100",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{instance}} | Payout_expectations",
+          "range": true,
+          "refId": "N"
         },
         {
           "datasource": {
@@ -1346,7 +1399,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.5",
+      "pluginVersion": "9.0.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1493,7 +1546,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.5",
+      "pluginVersion": "9.0.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1671,7 +1724,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.5",
+      "pluginVersion": "9.0.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2265,7 +2318,7 @@
         "alertThreshold": false
       },
       "percentage": false,
-      "pluginVersion": "8.5.5",
+      "pluginVersion": "9.0.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2457,7 +2510,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -2477,6 +2530,6 @@
   "timezone": "",
   "title": "Storj-Exporter-Boom-Table",
   "uid": "teLFQE2Wkdd",
-  "version": 11,
+  "version": 12,
   "weekStart": ""
 }
