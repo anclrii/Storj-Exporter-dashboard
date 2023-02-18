@@ -2495,11 +2495,11 @@
         "name": "node",
         "options": [],
         "query": {
-          "query": "label_values(instance)",
+          "query": "storj_node_info",
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
-        "regex": "",
+        "regex": "/instance=\"(?<text>[^\"]+)|chip=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
